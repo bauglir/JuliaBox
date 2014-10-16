@@ -22,6 +22,7 @@ ${SUDO_JUSER} echo "c.NotebookApp.allow_origin = \"*\"" >> ${JUSER_HOME}/.ipytho
 ${SUDO_JUSER} cp ${DIR}/IJulia/custom.css ${JUSER_HOME}/.ipython/profile_julia/static/custom/custom.css
 
 ${SUDO_JUSER} mkdir -p ${JUSER_HOME}/.juliabox
+${SUDO_JUSER} mkdir -p ${JUSER_HOME}/.codebox
 
 ${SUDO_JUSER} cp -R ${DIR}/IJulia/tornado ${JUSER_HOME}/.juliabox/tornado
 ${SUDO_JUSER} cp ${DIR}/IJulia/supervisord.conf ${JUSER_HOME}/.juliabox/supervisord.conf

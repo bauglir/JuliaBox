@@ -45,6 +45,8 @@ RUN apt-get update \
     python-isodate \
     python-git \
     python-pip \
+    nodejs \
+    npm \
     && apt-get clean
 
 ADD texlive.profile /tmp/tl/texlive.profile
@@ -61,4 +63,12 @@ RUN pip install --upgrade PyDrive google-api-python-client jsonpointer jsonschem
 RUN git clone --recursive https://github.com/tanmaykm/ipython.git; cd ipython; python setup.py install; cd ..; rm -rf ipython
 
 RUN git clone https://github.com/tanmaykm/shellinabox_fork.git; cd shellinabox_fork; ./configure; make install; cd ..; rm -rf shellinabox_fork
+
+### Set up codebox ###
+# Sometimes nodejs executable is called nodejs, but codebox needs it to be node
+RUN if ! which node; then ln -s "$(which nodejs)" /usr/local/bin/node; fi &&
+    cd /opt/ &&
+    wget https://github.com/shashi/codebox/releases/download/v0.1-juliabox/codebox.tar.gz &&
+    tar -xvzf codebox.tar.gz &&
+    rm codebox.tar.gz
 
