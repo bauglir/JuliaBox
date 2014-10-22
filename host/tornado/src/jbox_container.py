@@ -25,7 +25,7 @@ class JBoxContainer(LoggerMixin):
     # By default all groups have 1024 shares.
     # A group with 100 shares will get a ~10% portion of the CPU time (https://wiki.archlinux.org/index.php/Cgroups)
     CPU_LIMIT = 1024
-    PORTS = [4200, 8000, 8998]
+    PORTS = [3000, 4200, 8000, 8998]
     VOLUMES = ['/home/juser']
     LOCAL_TZ_OFFSET = 0
     FS_LOC = None

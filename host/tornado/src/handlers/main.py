@@ -98,7 +98,7 @@ class MainHandler(JBoxHandler):
             self.chk_and_launch_docker(sessname, creds, authtok, user_id)
 
     def clear_container_cookies(self):
-        for name in ["sessname", "hostshell", "hostupload", "hostipnb", "sign"]:
+        for name in ["sessname", "hosteditor", "hostshell", "hostupload", "hostipnb", "sign"]:
             self.clear_cookie(name)
 
     def set_container_cookies(self, cookies):
@@ -135,11 +135,12 @@ class MainHandler(JBoxHandler):
                 self.redirect('/?h=' + str(nhops + 1))
         else:
             cont = JBoxContainer.launch_by_name(sessname, user_id, True)
-            (shellport, uplport, ipnbport) = cont.get_host_ports()
+            (codeboxport, shellport, uplport, ipnbport) = cont.get_host_ports()
             sign = signstr(sessname + str(shellport) + str(uplport) + str(ipnbport), self.config("sesskey"))
 
             self.set_container_cookies({
                 "sessname": sessname,
+                "hosteditor": codeboxport,
                 "hostshell": shellport,
                 "hostupload": uplport,
                 "hostipnb": ipnbport,
